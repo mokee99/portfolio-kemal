@@ -178,7 +178,7 @@
 .intro-label::after {
     content: "";
     display: block;
-    width: 100%;
+    width: calc(100% + 20px);
     height: 1px;
     margin-top: 6px;
     background-color: #777777;
@@ -200,11 +200,12 @@
 
 .intro-label-planning {
     top: 10%;
-    right: -60px;
+    right: -40px;
+    align-items: flex-end;
 }
 
 .intro-label-planning::before {
-    left: -7px;
+    left: -27px;
 }
 
 /* Problem Solving */
@@ -212,21 +213,23 @@
 .intro-label-problem {
     top: 65%;
     left: -120px;
+    align-items: flex-start;
 }
 
 .intro-label-problem::before {
-    right: -7px;
+    right: -27px;
 }
 
 /* Development */
 
 .intro-label-development {
     bottom: 10%;
-    right: -60px;
+    right: -40px;
+    align-items: flex-end;
 }
 
 .intro-label-development::before {
-    left: -7px;
+    left: -27px;
 }
 
 /* TABLET */
@@ -247,8 +250,8 @@
 
     .intro-visual {
         position: relative;
-        width: 70%;
-        max-width: 480px;
+        width: 77%;
+        max-width: 528px;
         right: auto;
         bottom: auto;
         margin: 80px auto 0;
@@ -259,18 +262,42 @@
     }
 
     .intro-label-planning {
-        top: 10%;
-        right: 0;
+        top: calc(10% - 10px);
+        right: -10px;
     }
 
     .intro-label-problem {
-        top: 75%;
-        left: 0;
+        top: calc(75% + 10px);
+        left: -10px;
     }
 
     .intro-label-development {
-        bottom: 10%;
-        right: 0;
+        bottom: calc(10% - 10px);
+        right: -10px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 767px) {
+    .intro-visual {
+        width: 65%;
+        margin-top: 80px;
+    }
+
+    .intro-label-planning {
+        top: calc(10% - 10px);
+        right: -30px;
+    }
+
+    .intro-label-problem {
+        top: calc(75% + 15px);
+        left: -45px;
+    }
+
+    .intro-label-development {
+        bottom: calc(10% - 15px);
+        right: -45px;
     }
 }
 
@@ -278,26 +305,41 @@
 
 @media (max-width: 479px) {
     .intro-visual {
-        width: 75%;
-        margin-top: 80px;
+        width: 70%;
     }
 
     .intro-label {
-        font-size: 16px;
+        font-size: 14px;
+    }
+
+    .intro-label::after {
+        width: 100%;
     }
 
     .intro-label-planning {
-        top: 10%;
-        right: -10%;
+        top: calc(10% - 10px);
+        right: -20px;
+    }
+
+    .intro-label-planning::before {
+        left: -7px;
     }
 
     .intro-label-problem {
-        top: 65%;
-        left: -10%;
+        top: calc(75% + 20px);
+        left: -30px;
+    }
+
+    .intro-label-problem::before {
+        right: -7px;
     }
 
     .intro-label-development {
-        bottom: 10%;
-        right: -10%;
+        bottom: calc(10% - 20px);
+        right: -30px;
+    }
+
+    .intro-label-development::before {
+        left: -7px;
     }
 }
