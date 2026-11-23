@@ -55,6 +55,7 @@
 
 .cs-heading-one {
     font-size: 60px;
+    line-height: 1;
     color: var(--clr-orange);
 }
 
@@ -70,6 +71,14 @@
     line-height: 1;
     color: rgba(7, 7, 7, 0.7);
 }
+
+.cs-label-white {
+    font-size: 15px;
+    line-height: 1;
+    color: rgba(235, 237, 236, 0.7);
+}
+
+
 
 .live-link {
     display: flex;
