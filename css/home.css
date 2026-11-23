@@ -66,6 +66,8 @@
     max-width: 20px;
 }
 
+
+
 @media (max-width: 1040px) {
     .hero-main-wrapper {
         justify-content: flex-end;
@@ -426,6 +428,34 @@
     }
 }
 
+
+
+
+
+/* SOLUTIONS STACK CARDS */
+
+@media (min-width: 768px) {
+    .solution-cards-wrapper {
+        position: relative;
+        padding-bottom: 300px;
+    }
+
+    .solution-card {
+        position: sticky;
+        top: 12vh;
+        margin-bottom: 0;
+        transform-origin: center center;
+    }
+
+    .solution-card:last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+
+
+
 /*mobile portrait*/
 
 @media (max-width: 479px) {
@@ -539,6 +569,34 @@
     }
 
 }
+
+
+.case-study-panel {
+    position: relative;
+    isolation: isolate;
+}
+
+
+/* CASE STUDIES PINNED PANELS */
+
+.case-study {
+    position: relative;
+}
+
+.case-study-panel {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+}
+
+.case-study-panel > .container-lg {
+    width: 100%;
+}
+
+.case-study-panel .case-study-main {
+    width: 100%;
+}
+
 
 
 .about {
@@ -663,6 +721,7 @@
 }
 
 
+
 .cta {
     height: 100svh;
     padding-top: 96px;
@@ -697,18 +756,34 @@
 
 .cta-link-wrapper {
     display: flex;
-    gap: 12px;
 }
 
 .cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
     font-size: 48px;
     line-height: 1;
     font-family: var(--ff-heading);
     font-weight: 800;
+    color: inherit;
+    transition: color 300ms ease;
 }
 
 .cta-arrow {
-    max-width: 32px;
+    display: block;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background-color: currentColor;
+
+    -webkit-mask: url("../assets/icons/arrow-bold.svg")
+        center / contain no-repeat;
+
+    mask: url("../assets/icons/arrow-bold.svg")
+        center / contain no-repeat;
+
+    transition: transform 300ms ease;
 }
 
 .social-wrapper {
@@ -721,8 +796,25 @@
     max-width: 32px;
 }
 
+/* HOVER */
 
-/* TABLET */ 
+@media (hover: hover) {
+    .cta-link:hover {
+        color: var(--clr-orange);
+    }
+
+    .cta-link:hover .cta-arrow {
+        transform: translate(4px, -4px);
+    }
+}
+
+/* KEYBOARD FOCUS */
+
+.cta-link:focus-visible {
+    color: var(--clr-orange);
+}
+
+/* TABLET */
 
 @media (max-width: 992px) {
     .cta {
@@ -731,8 +823,7 @@
     }
 }
 
-
-/* MOBILE */ 
+/* MOBILE */
 
 @media (max-width: 767px) {
     .bottom-wrapper {
@@ -748,16 +839,14 @@
         padding-bottom: 32px;
     }
 
-    .cta-link-wrapper {
-        gap: 6px;
-    }
-
     .cta-link {
+        gap: 6px;
         font-size: 36px;
     }
 
     .cta-arrow {
-        max-width: 24px;
+        width: 24px;
+        height: 24px;
     }
 
     .social-wrapper {
@@ -769,4 +858,16 @@
     }
 }
 
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    .cta-link,
+    .cta-arrow {
+        transition: none;
+    }
+
+    .cta-link:hover .cta-arrow {
+        transform: none;
+    }
+}
 

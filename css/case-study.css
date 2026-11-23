@@ -1,3 +1,4 @@
+
 .cs-section {
     padding-top: 200px;
     padding-bottom: 96px;
@@ -7,6 +8,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: stretch;
     gap: 40px;
 }
 
@@ -44,8 +46,11 @@
 
 .cs-right-wrapper {
     position: relative;
+    display: flex;
+    flex-direction: column;
     flex: 736;
     min-width: 0;
+    gap: 64px;
 }
 
 .cs-content-wrapper {
@@ -77,8 +82,6 @@
     line-height: 1;
     color: rgba(235, 237, 236, 0.7);
 }
-
-
 
 .live-link {
     display: flex;
@@ -124,7 +127,8 @@
 }
 
 .cs-next-project {
-    display: none;
+    display: block;
+    margin-top: auto;
 }
 
 
@@ -159,6 +163,7 @@
 
     .cs-next-project {
         order: 3;
+        margin-top: 0;
     }
 
     .cs-heading-two {
@@ -180,9 +185,7 @@
 }
 
 
-
-
-/* MOBILE */ 
+/* MOBILE */
 
 @media (max-width: 767px) {
     .cs-section {
@@ -232,7 +235,8 @@
     }
 }
 
-/* MOBILE */ 
+
+/* MOBILE PORTRAIT */
 
 @media (max-width: 479px) {
     .cs-content-wrapper {

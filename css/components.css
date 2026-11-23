@@ -240,9 +240,12 @@
     color: var(--clr-orange);
     display: flex;
     gap: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .orange-arrow {
-    max-width: 20px;
+    max-width: 32px;
 }
 

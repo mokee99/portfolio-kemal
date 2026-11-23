@@ -33,11 +33,21 @@
 
     <!-- JavaScript -->
     <script src="./js/components.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js" defer></script>
     <script src="./js/preloader.js" defer></script>
     <script src="./js/home.js" defer></script>
 </head>
 
 <body>
+
+    <div class="preloader" id="preloader" role="status" aria-label="Loading website">
+        <div class="preloader-logo-wrapper">
+            <img class="preloader-logo" src="./assets/images/preloader/preloader-logo.svg" alt="">
+        </div>
+        <span class="preloader-counter" aria-hidden="true">000</span>
+        <div class="preloader-transition"></div>
+    </div>
 
     <div id="navbar-container"></div>
     
@@ -277,6 +287,7 @@
         </div>
     </section>
 
+
     <section class="cta bg-dark">
         <div class="container-lg">
             <div class="cta-main-wrapper">
@@ -287,24 +298,32 @@
                         <span>IN MIND?</span>
                     </h2>
                 </div>
+
                 <div class="bottom-wrapper">
                     <div class="cta-link-wrapper">
-                        <a class="cta-link" href="" target="_blank" rel="noopener noreferrer">LET'S TALK.</a>
-                        <img class="cta-arrow" src="./assets/icons/arrow-bold.svg" alt="Bold arrow icon">
+                        <a class="cta-link" href="" target="_blank" rel="noopener noreferrer">
+                            <span>LET'S TALK.</span>
+                            <span class="cta-arrow" aria-hidden="true"></span>
+                        </a>
                     </div>
+
                     <div class="social-wrapper">
-                        <a class="privacy-link" href="./privacy.html">Privacy</a>
+                        <a class="privacy-link" href="./privacy.html">
+                            Privacy
+                        </a>
+
                         <a href="YOUR_GITHUB_URL" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
-                            <img class="social-media-icon" src="../assets/icons/github-icon.svg" alt="GitHub">
+                            <img class="social-media-icon" src="./assets/icons/github-icon.svg" alt="GitHub">
                         </a>
 
                         <a href="YOUR_LINKEDIN_URL" target="_blank" rel="noopener noreferrer" aria-label="Visit my LinkedIn profile">
-                            <img class="social-media-icon" src="../assets/icons/linkedin-icon.svg" alt="LinkedIn">
+                            <img class="social-media-icon" src="./assets/icons/linkedin-icon.svg" alt="LinkedIn">
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 
 </body>
