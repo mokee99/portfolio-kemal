@@ -456,6 +456,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    margin-bottom: 72px;
 }
 
 .case-study-text {
@@ -501,7 +502,6 @@
 
 .case-study-image {
     width: 100%;
-    margin-top: 72px;
 }
 
 /* TABLET */ 
@@ -516,11 +516,9 @@
         justify-content: flex-start;
         align-items: flex-start;
         gap: 32px;
+        margin-bottom: 48px;
     }
 
-    .case-study-image {
-        margin-top: 48px;
-    }
 }
 
 
@@ -533,10 +531,7 @@
 
     .case-study-content {
         gap: 24px;
-    }
-
-        .case-study-image {
-        margin-top: 40px;
+        margin-bottom: 40px;
     }
 
     .case-study-link {

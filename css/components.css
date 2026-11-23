@@ -221,3 +221,28 @@
     }
 }
 
+
+.footer {
+    padding-top: 72px;
+    padding-bottom: 48px;
+}
+
+.footer-main-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.back-home-link {
+    font-size: 20px;
+    line-height: 1;
+    font-family: var(--ff-heading);
+    color: var(--clr-orange);
+    display: flex;
+    gap: 6px;
+}
+
+.orange-arrow {
+    max-width: 20px;
+}
+

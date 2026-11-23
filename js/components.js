@@ -1,21 +1,39 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
+    // NAVBAR
     const navbarContainer = document.querySelector("#navbar-container");
 
-    if (!navbarContainer) return;
+    if (navbarContainer) {
+        try {
+            const response = await fetch("./components/navbar.html");
 
-    try {
-        const response = await fetch("./components/navbar.html");
+            if (!response.ok) {
+                throw new Error("Navbar component could not be loaded.");
+            }
 
-        if (!response.ok) {
-            throw new Error("Navbar component could not be loaded.");
+            navbarContainer.innerHTML = await response.text();
+
+            initNavbar();
+        } catch (error) {
+            console.error("Navbar error:", error);
         }
+    }
 
-        navbarContainer.innerHTML = await response.text();
+    // FOOTER
+    const footerContainer = document.querySelector("#footer-container");
 
-        initNavbar();
-    } catch (error) {
-        console.error("Navbar error:", error);
+    if (footerContainer) {
+        try {
+            const response = await fetch("./components/footer.html");
+
+            if (!response.ok) {
+                throw new Error("Footer component could not be loaded.");
+            }
+
+            footerContainer.innerHTML = await response.text();
+        } catch (error) {
+            console.error("Footer error:", error);
+        }
     }
 });
 
@@ -76,3 +94,5 @@ function initNavbar() {
 
     updateNavbar();
 }
+
+

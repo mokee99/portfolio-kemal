@@ -139,5 +139,27 @@ h6 {
     color: var(--clr-black);
 }
 
+.social-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.social-media-icon {
+    max-width: 32px;
+}
+
+/* MOBILE */ 
+
+@media (max-width: 767px) {
+    .social-wrapper {
+        gap: 12px;
+    }
+
+    .social-media-icon {
+        max-width: 24px;
+    }
+}
+
 
 
