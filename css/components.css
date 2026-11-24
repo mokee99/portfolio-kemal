@@ -1,5 +1,5 @@
 
-/* ==================== NAVBAR ==================== */
+/* NAVBAR */
 
 .site-header {
     position: fixed;
@@ -104,7 +104,6 @@
     background-color: #df5726;
 }
 
-/* COMPACT STATE */
 
 .navbar.is-compact .navbar-links {
     display: none;
@@ -114,7 +113,6 @@
     display: block;
 }
 
-/* OPEN STATE */
 
 .navbar.is-open .navbar-links {
     display: flex;
@@ -198,7 +196,7 @@
     }
 }
 
-/* SMALL MOBILE */
+/* MOBILE PORTRAIT */
 
 @media (max-width: 479px) {
     .navbar {
@@ -221,6 +219,9 @@
     }
 }
 
+
+
+/* FOOTER */
 
 .footer {
     padding-top: 72px;
@@ -249,8 +250,14 @@
     max-width: 32px;
 }
 
+/* MOBILE */
 
 @media (max-width: 767px) {
+    .footer {
+        padding-top: 48px;
+        padding-bottom: 32px;
+    }
+
     .footer-main-wrapper {
         flex-direction: column;
         justify-content: flex-start;

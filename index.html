@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -5,6 +7,7 @@
     <!-- SEO -->
     <title>Kemal Kovačević | Front-End Developer</title>
     <meta name="description" content="Front-end developer specializing in custom websites, responsive design, and interactive web experiences. Explore my projects and let's work together.">
+    <link rel="canonical" href="https://kemalkovacevic.com/">
     <meta name="theme-color" content="#070707">
 
     <!-- Favicon -->
@@ -18,12 +21,33 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Kemal Kovačević | Front-End Developer">
     <meta property="og:description" content="Front-end developer specializing in custom websites, responsive design, and interactive web experiences. Explore my projects and let's work together.">
-    <meta property="og:url" content="https://tvoj-domen.com/">
-    <meta property="og:image" content="https://tvoj-domen.com/assets/images/opengraph.jpg">
+    <meta property="og:url" content="https://kemalkovacevic.com/">
+    <meta property="og:image" content="https://kemalkovacevic.com/assets/favicon/opengraph.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="Kemal Kovačević">
     <meta property="og:locale" content="en_US">
+
+    <!-- Preloader Session Check -->
+    <script>
+        (() => {
+            const hasAnchor = window.location.hash.length > 1;
+
+            const reducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+            let preloaderSeen = false;
+
+            try {
+                preloaderSeen = sessionStorage.getItem("preloaderSeen") === "true";
+            } catch (error) {}
+
+            if (!preloaderSeen && !hasAnchor && !reducedMotion) {
+                document.documentElement.classList.add("show-preloader");
+            }
+        })();
+    </script>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="./css/global.css">
@@ -327,3 +351,5 @@
 
 
 </body>
+
+</html>

@@ -11,7 +11,7 @@
 }
 
 .privacy-heading-big {
-    font-size: 72px;
+    font-size: clamp(36px, 7vw, 48px);
     line-height: 1;
     color: var(--clr-orange);
     margin-bottom: 32px;
@@ -29,7 +29,7 @@
 }
 
 .privacy-heading-small {
-    font-size: 48px;
+    font-size: clamp(24px, 7vw, 32px);
     line-height: 1;
     margin-bottom: 32px;
 }
@@ -74,14 +74,6 @@
         padding-top: 180px;
         padding-bottom: 72px; 
     }
-
-    .privacy-heading-big {
-        font-size: 60px;
-    }
-
-    .privacy-heading-small {
-        font-size: 36px;
-    }
 }
 
 /* MOBILE */ 
@@ -93,13 +85,10 @@
     }
 
     .privacy-heading-big {
-        font-size: 48px;
         margin-bottom: 24px;
     }
 
-
     .privacy-heading-small {
-        font-size: 30px;
         margin-bottom: 24px;
     }
 

@@ -1,57 +1,114 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     const preloader = document.querySelector(".preloader");
     const logo = document.querySelector(".preloader-logo");
     const counter = document.querySelector(".preloader-counter");
     const transition = document.querySelector(".preloader-transition");
 
-    if (!preloader || !logo || !counter || !transition) return;
+    const root = document.documentElement;
 
-    if (typeof gsap === "undefined") {
-        console.error("GSAP is not loaded.");
-        preloader.remove();
-        return;
-    }
+    const shouldShowPreloader = root.classList.contains("show-preloader");
 
-    // Lock scrolling while the preloader is active.
-    const previousOverflow = document.documentElement.style.overflow;
-    document.documentElement.style.overflow = "hidden";
+    const hasAnchor = window.location.hash.length > 1;
 
     const prefersReducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    if (prefersReducedMotion) {
-        preloader.remove();
-        document.documentElement.style.overflow = previousOverflow;
+
+    // Remember that the homepage has been visited.
+    try {
+        sessionStorage.setItem("preloaderSeen", "true");
+    } catch (error) {}
+
+
+    // Remove Preloader when GSAP is unavailable.
+    if (typeof gsap === "undefined") {
+        console.error("GSAP is not loaded.");
+        preloader?.remove();
+        root.classList.remove("show-preloader");
         return;
     }
 
-    // Prepare Hero elements before the Preloader disappears.
+
+    // Hero elements.
     const heroWords = document.querySelectorAll(".hero-word");
     const heroParagraph = document.querySelector(".hero-paragraph");
     const heroScroll = document.querySelector(".scroll-down-wrapper");
 
-    // Subtle blur reveal for heading
+
+    // Skip animations for reduced motion or direct anchor navigation.
+    if (prefersReducedMotion || hasAnchor) {
+        preloader?.remove();
+        root.classList.remove("show-preloader");
+        return;
+    }
+
+
+    // Prepare Hero elements.
+
+    // Subtle blur reveal for heading.
     gsap.set(heroWords, {
         y: 12,
         autoAlpha: 0.25,
         filter: "blur(4px)"
     });
 
-    // Paragraph initial state
+    // Paragraph initial state.
     gsap.set(heroParagraph, {
         y: 20,
         autoAlpha: 0
     });
 
-    // Scroll indicator initial state
+    // Scroll indicator initial state.
     gsap.set(heroScroll, {
         y: 15,
         autoAlpha: 0
     });
 
+
+    // Start Hero animation independently of the Preloader.
+    function playHeroAnimation() {
+        if (typeof initHeroAnimation === "function") {
+            const heroTimeline = initHeroAnimation();
+
+            if (heroTimeline) {
+                heroTimeline.play();
+                return;
+            }
+        }
+
+        // Fallback: make Hero visible.
+        gsap.set(
+            [heroWords, heroParagraph, heroScroll],
+            { clearProps: "all" }
+        );
+    }
+
+
+    // Skip Preloader on subsequent visits.
+    if (
+        !shouldShowPreloader ||
+        !preloader ||
+        !logo ||
+        !counter ||
+        !transition
+    ) {
+        preloader?.remove();
+        root.classList.remove("show-preloader");
+
+        playHeroAnimation();
+
+        return;
+    }
+
+
+    // Lock scrolling while the Preloader is active.
+    const previousOverflow = root.style.overflow;
+    root.style.overflow = "hidden";
+
+
     const progress = { value: 0 };
+
 
     // Calculate the scale needed to fill the viewport.
     function getZoomScale() {
@@ -65,27 +122,19 @@ document.addEventListener("DOMContentLoaded", () => {
         return (diagonal / Math.min(rect.width, rect.height)) * 3;
     }
 
+
     const timeline = gsap.timeline({
         onComplete: () => {
             preloader.remove();
-            document.documentElement.style.overflow = previousOverflow;
+
+            root.classList.remove("show-preloader");
+            root.style.overflow = previousOverflow;
 
             // Start Hero animation after the Preloader finishes.
-            if (typeof initHeroAnimation === "function") {
-                const heroTimeline = initHeroAnimation();
-
-                if (heroTimeline) {
-                    heroTimeline.play();
-                }
-            } else {
-                // Fallback: make Hero visible if animation is unavailable.
-                gsap.set(
-                    [heroWords, heroParagraph, heroScroll],
-                    { clearProps: "all" }
-                );
-            }
+            playHeroAnimation();
         }
     });
+
 
     // Rotate the logo twice.
     timeline.to(logo, {
@@ -93,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         duration: 4.5,
         ease: "none"
     }, 0);
+
 
     // Count from 000 to 100.
     timeline.to(progress, {
@@ -106,10 +156,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, 0);
 
+
     // Brief pause at 100.
     timeline.to({}, {
         duration: 0.25
     });
+
 
     // Hide the counter before zooming.
     timeline.to(counter, {
@@ -117,12 +169,14 @@ document.addEventListener("DOMContentLoaded", () => {
         duration: 0.2
     });
 
+
     // Zoom into the black logo.
     timeline.to(logo, {
         scale: getZoomScale,
         duration: 0.9,
         ease: "power3.inOut"
     });
+
 
     // Cover the remaining orange gaps with black.
     timeline.set(transition, {
@@ -134,6 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
         duration: 0.2,
         ease: "none"
     }, "<");
+
 
     // Reveal the Hero.
     timeline.to(preloader, {

@@ -59,7 +59,7 @@
 }
 
 .cs-heading-one {
-    font-size: 60px;
+    font-size: clamp(32px, 7vw, 48px);
     line-height: 1;
     color: var(--clr-orange);
 }
@@ -97,7 +97,7 @@
 }
 
 .cs-heading-two {
-    font-size: 40px;
+    font-size: clamp(24px, 7vw, 32px);
     line-height: 1;
     margin-top: 60px;
 }
@@ -108,7 +108,7 @@
 
 .cs-next-heading {
     max-width: 350px;
-    font-size: 40px;
+    font-size: clamp(24px, 7vw, 32px);
     line-height: 1;
     color: var(--clr-orange);
     margin-bottom: 24px;
@@ -210,13 +210,8 @@
         max-width: 760px;
     }
 
-    .cs-heading-one {
-        font-size: 48px;
-    }
-
     .cs-heading-two {
         margin-top: 40px;
-        font-size: 32px;
     }
 
     .cs-paragraph {
