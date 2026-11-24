@@ -715,6 +715,10 @@
     padding-bottom: 72px;
 }
 
+.cta > .container-lg {
+    height: 100%;
+}
+
 .cta-main-wrapper {
     display: flex;
     flex-direction: column;
