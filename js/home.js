@@ -298,6 +298,7 @@ document.addEventListener("DOMContentLoaded", initIntroAnimation);
 
 
 
+
 function initSolutionsHeadingAnimation() {
     if (
         typeof gsap === "undefined" ||
@@ -307,26 +308,24 @@ function initSolutionsHeadingAnimation() {
     gsap.registerPlugin(ScrollTrigger);
 
     const heading = document.querySelector(".solutions-heading");
-    const headingWrapper = document.querySelector(
-        ".solutions-heading-wrapper"
-    );
+    const headingWrapper = document.querySelector(".solutions-heading-wrapper");
 
     if (!heading || !headingWrapper) return;
 
     const lines = heading.querySelectorAll("span");
-
     const mm = gsap.matchMedia();
+
+
+    // HEADING REVEAL — ALL DEVICES
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
 
-        // Initial heading state
         gsap.set(lines, {
             y: 12,
             autoAlpha: 0.25,
             filter: "blur(4px)"
         });
 
-        // Subtle heading reveal
         gsap.to(lines, {
             y: 0,
             autoAlpha: 1,
@@ -340,25 +339,35 @@ function initSolutionsHeadingAnimation() {
                 once: true
             }
         });
-
-        // Subtle reversible heading parallax
-        gsap.to(headingWrapper, {
-            y: -30,
-            ease: "none",
-            scrollTrigger: {
-                trigger: heading,
-                start: "top 80%",
-                end: "bottom top",
-                scrub: 1
-            }
-        });
     });
+
+
+    // PARALLAX — DESKTOP & TABLET ONLY
+
+    mm.add(
+        "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
+        () => {
+
+            gsap.to(headingWrapper, {
+                y: -30,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: heading,
+                    start: "top 80%",
+                    end: "bottom top",
+                    scrub: 1
+                }
+            });
+
+        }
+    );
 }
 
 document.addEventListener(
     "DOMContentLoaded",
     initSolutionsHeadingAnimation
 );
+
 
 
 
@@ -448,47 +457,6 @@ function initStackCards() {
 document.addEventListener("DOMContentLoaded", initStackCards);
 
 
-
-function initCaseStudiesAnimation() {
-    if (
-        typeof gsap === "undefined" ||
-        typeof ScrollTrigger === "undefined"
-    ) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const section = document.querySelector(".case-studies");
-    if (!section) return;
-
-    const cards = section.querySelectorAll(".case-study-card");
-    if (!cards.length) return;
-
-    const mm = gsap.matchMedia();
-
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-        cards.forEach((card) => {
-            gsap.from(card, {
-                y: 40,
-                autoAlpha: 0,
-                duration: 0.9,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 85%",
-                    once: true
-                }
-            });
-        });
-    });
-}
-
-document.addEventListener(
-    "DOMContentLoaded",
-    initCaseStudiesAnimation
-);
-
-
-
 function initCaseStudiesAnimation() {
     if (
         typeof gsap === "undefined" ||
@@ -505,61 +473,74 @@ function initCaseStudiesAnimation() {
         section
     );
 
-    if (panels.length < 2) return;
+    if (!panels.length) return;
 
     const mm = gsap.matchMedia();
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
 
-       
+    // DESKTOP — PINNED PANELS
 
-        panels.forEach((panel, index) => {
-            gsap.set(panel, {
-                zIndex: index + 1
-            });
+    mm.add(
+        "(min-width: 1041px) and (prefers-reduced-motion: no-preference)",
+        () => {
 
-            if (index === panels.length - 1) return;
+            panels.forEach((panel, index) => {
+                gsap.set(panel, {
+                    zIndex: index + 1
+                });
 
-            ScrollTrigger.create({
-                trigger: panel,
-                start: "bottom bottom",
-                pin: true,
-                pinSpacing: false,
-                invalidateOnRefresh: true
-            });
-        });
+                if (index === panels.length - 1) return;
 
-
-
-        // Subtle content reveal
-        panels.forEach((panel) => {
-            const content = panel.querySelector(
-                ".case-study-main"
-            );
-
-            if (!content) return;
-
-            gsap.from(content, {
-                y: 30,
-                autoAlpha: 0,
-                duration: 0.8,
-                ease: "power2.out",
-                scrollTrigger: {
+                ScrollTrigger.create({
                     trigger: panel,
-                    start: "top 85%",
-                    once: true
-                }
+                    start: "bottom bottom",
+                    pin: true,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true
+                });
             });
-        });
 
-        ScrollTrigger.refresh();
-    });
+        }
+    );
+
+
+    // ALL DEVICES — CONTENT REVEAL
+
+    mm.add(
+        "(prefers-reduced-motion: no-preference)",
+        () => {
+
+            panels.forEach((panel) => {
+                const content = panel.querySelector(
+                    ".case-study-main"
+                );
+
+                if (!content) return;
+
+                gsap.from(content, {
+                    y: 30,
+                    autoAlpha: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: panel,
+                        start: "top 85%",
+                        once: true
+                    }
+                });
+            });
+
+        }
+    );
+
+    ScrollTrigger.refresh();
 }
 
 document.addEventListener(
     "DOMContentLoaded",
     initCaseStudiesAnimation
 );
+
 
 
 

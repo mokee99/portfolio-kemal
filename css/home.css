@@ -426,6 +426,13 @@
         max-width: 76px;
         align-self: flex-end;
     }
+
+    .solution-cards-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 40px;
+    }
 }
 
 
@@ -454,8 +461,6 @@
 
 
 
-
-
 /*mobile portrait*/
 
 @media (max-width: 479px) {
@@ -477,8 +482,23 @@
     }
 }
 
+
+.case-study {
+    position: relative;
+}
+
 .case-study-panel {
+    position: relative;
+    isolation: isolate;
     padding-block: 96px;
+}
+
+.case-study-panel > .container-lg {
+    width: 100%;
+}
+
+.case-study-panel .case-study-main {
+    width: 100%;
 }
 
 .case-study-content {
@@ -534,7 +554,26 @@
     width: 100%;
 }
 
-/* TABLET */ 
+
+/* DESKTOP PINNED PANELS */
+
+@media (min-width: 1041px) {
+    .case-study-panel {
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+/* TABLET */
+
+@media (max-width: 1040px) {
+    .case-study-panel {
+        min-height: auto;
+        display: block;
+    }
+}
 
 @media (max-width: 992px) {
     .case-study-panel {
@@ -548,11 +587,10 @@
         gap: 32px;
         margin-bottom: 48px;
     }
-
 }
 
 
-/* MOBILE */ 
+/* MOBILE */
 
 @media (max-width: 767px) {
     .case-study-panel {
@@ -567,34 +605,6 @@
     .case-study-link {
         font-size: 16px;
     }
-
-}
-
-
-.case-study-panel {
-    position: relative;
-    isolation: isolate;
-}
-
-
-/* CASE STUDIES PINNED PANELS */
-
-.case-study {
-    position: relative;
-}
-
-.case-study-panel {
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-}
-
-.case-study-panel > .container-lg {
-    width: 100%;
-}
-
-.case-study-panel .case-study-main {
-    width: 100%;
 }
 
 
@@ -825,14 +835,15 @@
 
 /* MOBILE */
 
-@media (max-width: 767px) {
+@media (min-width: 480px) and (max-width: 767px) and (orientation: landscape) {
     .bottom-wrapper {
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 24px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
     }
+}
 
+@media (max-width: 767px) {
     .cta {
         min-height: 650px;
         padding-top: 48px;
@@ -855,6 +866,17 @@
 
     .social-media-icon {
         max-width: 24px;
+    }
+}
+
+/* MOBILE PORTRAIT */
+
+@media (max-width: 479px) {
+    .bottom-wrapper {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 24px;
     }
 }
 
